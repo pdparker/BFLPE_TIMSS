@@ -29,7 +29,7 @@ data_index_long <- function(index_bflpe){
   return(data)
 }
 
-loadd(raw_bflpe)
+#loadd(raw_bflpe)
 data_raw_long <- function(raw_bflpe){
   data = raw_bflpe %>%
     pivot_longer(cols = bf_03G4:bf_15G8_se,

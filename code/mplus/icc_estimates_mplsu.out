@@ -1,0 +1,210 @@
+Mplus VERSION 8.1 (Mac)
+MUTHEN & MUTHEN
+08/13/2019   4:05 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: Your title goes here
+  DATA: FILE = "timss11_icc.csv";
+  VARIABLE:
+  NAMES = idcntry houwgt idschool bsmmat bsssci;
+  MISSING=.;
+
+  USEVARIABLES =
+   bsmmat B_MAT IDCNTSCH;
+
+
+  WITHIN = bsmmat;
+  BETWEEN = B_MAT;
+
+  WEIGHT IS HOUWGT;
+  CLUSTER =  IDCNTSCH ;
+  GROUPING = idcntry(
+  36 40 56 76 203 208 246 276 348 352 372 380 410 428
+    438 442 484 528 554 578 620 643 752 756 826 840 );
+  DEFINE: IDCNTSCH = idcntry + 10000*(idschool);
+  DEFINE: !STANDARDIZE asmmat ;
+  B_MAT = CLUSTER_MEAN(bsmmat);
+
+  ANALYSIS: ESTIMATOR = MLR; TYPE = TWOLEVEL;
+
+  model ;
+  %WITHIN%
+  pv1gen (wfmach1);
+  %BETWEEN%
+  B_gen (bfmach1);
+  model 40;
+  %WITHIN%
+  pv1gen (wfmach2);
+  %BETWEEN%
+  B_gen (bfmach2);
+  model 56;
+  %WITHIN%
+  pv1gen (wfmach3);
+  %BETWEEN%
+  B_gen (bfmach3);
+  model 76;
+  %WITHIN%
+  pv1gen (wfmach4);
+  %BETWEEN%
+  B_gen (bfmach4);
+  model 203;
+  %WITHIN%
+  pv1gen (wfmach5);
+  %BETWEEN%
+  B_gen (bfmach5);
+  model 208;
+  %WITHIN%
+  pv1gen (wfmach6);
+  %BETWEEN%
+  B_gen (bfmach6);
+  model 246;
+  %WITHIN%
+  pv1gen (wfmach7);
+  %BETWEEN%
+  B_gen (bfmach7);
+  model 276;
+  %WITHIN%
+  pv1gen (wfmach8);
+  %BETWEEN%
+  B_gen (bfmach8);
+  model 348;
+  %WITHIN%
+  pv1gen (wfmach9);
+  %BETWEEN%
+  B_gen (bfmach9);
+  model 352;
+  %WITHIN%
+  pv1gen (wfmach10);
+  %BETWEEN%
+  B_gen (bfmach10);
+  model 372;
+  %WITHIN%
+  pv1gen (wfmach11);
+  %BETWEEN%
+  B_gen (bfmach11);
+  model 380;
+  %WITHIN%
+  pv1gen (wfmach12);
+  %BETWEEN%
+  B_gen (bfmach12);
+  model 410;
+  %WITHIN%
+  pv1gen (wfmach13);
+  %BETWEEN%
+  B_gen (bfmach13);
+  model 428;
+  %WITHIN%
+  pv1gen (wfmach14);
+  %BETWEEN%
+  B_gen (bfmach14);
+  model 438;
+  %WITHIN%
+  pv1gen (wfmach15);
+  %BETWEEN%
+  B_gen (bfmach15);
+  model 442;
+  %WITHIN%
+  pv1gen (wfmach16);
+  %BETWEEN%
+  B_gen (bfmach16);
+  model 484;
+  %WITHIN%
+  pv1gen (wfmach17);
+  %BETWEEN%
+  B_gen (bfmach17);
+  model 528;
+  %WITHIN%
+  pv1gen (wfmach18);
+  %BETWEEN%
+  B_gen (bfmach18);
+  model 554;
+  %WITHIN%
+  pv1gen (wfmach19);
+  %BETWEEN%
+  B_gen (bfmach19);
+  model 578;
+  %WITHIN%
+  pv1gen (wfmach20);
+  %BETWEEN%
+  B_gen (bfmach20);
+  model 620;
+  %WITHIN%
+  pv1gen (wfmach21);
+  %BETWEEN%
+  B_gen (bfmach21);
+  model 643;
+  %WITHIN%
+  pv1gen (wfmach22);
+  %BETWEEN%
+  B_gen (bfmach22);
+  model 752;
+  %WITHIN%
+  pv1gen (wfmach23);
+  %BETWEEN%
+  B_gen (bfmach23);
+  model 756;
+  %WITHIN%
+  pv1gen (wfmach24);
+  %BETWEEN%
+  B_gen (bfmach24);
+  model 826;
+  %WITHIN%
+  pv1gen (wfmach25);
+  %BETWEEN%
+  B_gen (bfmach25);
+  model 840;
+  %WITHIN%
+  pv1gen (wfmach26);
+  %BETWEEN%
+  B_gen (bfmach26);
+
+
+    model CONSTRAINT:
+    new(ICC1-ICC33);
+  ICC1 = bfmach1/(wfmach1+bfmach1);
+  ICC2 = bfmach2/(wfmach2+bfmach2);
+  ICC3 = bfmach3/(wfmach3+bfmach3);
+  ICC4 = bfmach4/(wfmach4+bfmach4);
+  ICC5 = bfmach5/(wfmach5+bfmach5);
+  ICC6 = bfmach6/(wfmach6+bfmach6);
+  ICC7 = bfmach7/(wfmach7+bfmach7);
+  ICC8 = bfmach8/(wfmach8+bfmach8);
+  ICC9 = bfmach9/(wfmach9+bfmach9);
+  ICC10 = bfmach10/(wfmach10+bfmach10);
+  ICC11 = bfmach11/(wfmach11+bfmach11);
+  ICC12 = bfmach12/(wfmach12+bfmach12);
+  ICC13 = bfmach13/(wfmach13+bfmach13);
+  ICC14 = bfmach14/(wfmach14+bfmach14);
+  ICC15 = bfmach15/(wfmach15+bfmach15);
+  ICC16 = bfmach16/(wfmach16+bfmach16);
+  ICC17 = bfmach17/(wfmach17+bfmach17);
+  ICC18 = bfmach18/(wfmach18+bfmach18);
+  ICC19 = bfmach19/(wfmach19+bfmach19);
+  ICC20 = bfmach20/(wfmach20+bfmach20);
+  ICC21 = bfmach21/(wfmach21+bfmach21);
+  ICC22 = bfmach22/(wfmach22+bfmach22);
+  ICC23 = bfmach23/(wfmach23+bfmach23);
+  ICC24 = bfmach24/(wfmach24+bfmach24);
+  ICC25 = bfmach25/(wfmach25+bfmach25);
+  ICC26 = bfmach26/(wfmach26+bfmach26);
+
+
+
+  OUTPUT:
+
+*** ERROR in ANALYSIS command
+  Unknown option:
+  %WITHIN%
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2018 Muthen & Muthen

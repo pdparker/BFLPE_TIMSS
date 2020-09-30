@@ -5,3 +5,5 @@
 data/*.csv
 .drake
 .csv
+archive
+archive/*.R

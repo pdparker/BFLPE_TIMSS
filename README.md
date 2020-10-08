@@ -9,3 +9,4 @@ Meta Analysis of BFLPE estimates from TIMSS
 4. Prepare data via the plan.R file
 5. Get results, tables, and figures by running output.R
 6. For supplementary analysis discussed in the letter run supplemental_analysis.R
+7. Most of the codes is written as functions. If you would like to toggle the results to be with respect to raw scale scores for self-concept, please set the argument `est = 'raw'`

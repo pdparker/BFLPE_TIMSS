@@ -1,4 +1,5 @@
 library(drake)
+library(here)
 source(here("code", "packages.R"))
 source(here("code", "functions.R"))
 source(here("code", "data_munging.R"))
@@ -19,10 +20,12 @@ plan <- drake_plan(
     transform = cross(type = c("index", "raw"))
   ),
   icc_meta_out = icc_meta(data),
+  cor = target(
+    cor(data, est = type),
+    transform = cross(type = c("index", "raw"))),
   main_meta_out = target(
-    main_meta(data, est = type, scale = s),
-    transform = cross(type = c("index", "raw"),
-                      s = c(FALSE,TRUE))
+    main_meta(data, est = type),
+    transform = cross(type = c("index", "raw"))
   )
 )
 

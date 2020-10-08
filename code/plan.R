@@ -15,18 +15,18 @@ plan <- drake_plan(
   long_index = data_index_long(index_bflpe),
   long_raw = data_raw_long(raw_bflpe),
   data = combine_data(fixed_est,long_index,long_raw),
-  bflpe_meta_out = target(
-    bflpe_meta(data, est = type),
-    transform = cross(type = c("index", "raw"))
-  ),
-  icc_meta_out = icc_meta(data),
+  # bflpe_meta_out = target(
+  #   bflpe_meta(data, est = type),
+  #   transform = cross(type = c("index", "raw"))
+  # ),
+  # icc_meta_out = icc_meta(data),
   cor = target(
     cor(data, est = type),
     transform = cross(type = c("index", "raw"))),
-  main_meta_out = target(
-    main_meta(data, est = type),
-    transform = cross(type = c("index", "raw"))
-  )
+  # main_meta_out = target(
+  #   main_meta(data, est = type),
+  #   transform = cross(type = c("index", "raw"))
+  # )
 )
 
 vis_drake_graph(plan)

@@ -103,26 +103,8 @@ row3 <- posterior$within_random %>%
   ) %>%
   mutate(Model = "Within Country Effect",.before = b_icc_est_m) %>%
   set_names(c("Model", "m","lb","ub","prob>.50"))
-# Row 4
-row4 <- posterior$within_grade_random %>% 
-  select(-starts_with("lp"), -contains("Interce"), -contains("iso")) %>%
-  mutate(grade4 = b_icc_est,
-         grade8 = b_icc_est + `b_icc_est:gradeG8`) %>%
-  select(grade4, grade8) %>%
-  mutate(across(everything(),
-                ~.*sd_x/sd_y       )
-  ) %>%
-  dplyr::summarise(across(everything(),
-                          list(m = median,
-                               lb = ~quantile(., probs = .025),
-                               ub = ~quantile(., probs = .975),
-                               prob = ~ecdf(.)(-.50))       )
-  ) %>%
-  pivot_longer(cols = everything(),names_sep = "_", names_to = c("grade", "statistic")) %>%
-  pivot_wider(id_cols = grade, names_from = statistic, values_from = value) %>%
-  set_names(c("Model", "m","lb","ub","prob>.50"))
 # Row 5
-row5 <- posterior$within_year_random %>% 
+row4 <- posterior$within_year_random %>% 
   select(-starts_with("lp"), -contains("Interce"), -contains("iso")) %>%
   mutate(`TIMSS 2003` = b_icc_est + `b_icc_est:year`*1,
          `TIMSS 2007` = b_icc_est + `b_icc_est:year`*2,
@@ -143,7 +125,7 @@ row5 <- posterior$within_year_random %>%
   set_names(c("Model", "m","lb","ub","prob>.50"))
 
 # Produce Table
-bind_rows(row1,row2,row3,row4,row5) %>%
+bind_rows(row1,row2,row3,row4) %>%
   mutate(across(where(is.numeric),~round(., 3)))
 
 loo(main_meta$within_random, main_meta$within_year_random)
